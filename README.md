@@ -1,2 +1,2 @@
-# www-ctor-default
-Tool to automate class constructor generation for default values
+# www-sql-object
+Tool to automate class generation based on SQL table design query

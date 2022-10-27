@@ -1,0 +1,42 @@
+﻿@page "/"
+@using System.Text
+@inject Services.GeneratorService generatorService;
+
+<PageTitle>www-ctor-default</PageTitle>
+
+<h1 class="text-center mt-2">www-ctor-default</h1>
+
+<h5 class="text-center">Tool to automate class constructor generation for default values</h5>
+
+<div class="row">
+    <div class="col-6">
+<textarea @bind=InitialData style="width: 100%;" rows="20"></textarea>
+    </div>
+
+    <div class="col-6">
+<textarea @bind=ProcessedData style="width: 100%;" rows="20"></textarea>
+    </div>
+</div>
+
+<div class="text-center mt-2">
+    <button @onclick=Process class="btn btn-primary">Process</button>
+</div>
+
+
+@code {
+    public string InitialData { get; set; }
+    public string ProcessedData { get; set; }
+
+    public void Process()
+    {
+        if (!string.IsNullOrEmpty(InitialData))
+        {
+            ProcessedData = this.GetProcessedData(this.InitialData);
+        }
+    }
+
+    private string GetProcessedData(string data)
+    {
+        return generatorService.GetData(data);
+    }
+}
